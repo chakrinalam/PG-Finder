@@ -13,9 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
 
-    <!-- <option value="thailavaram">Thailavaram</option>
-    <option value="potheri">Potheri</option> -->
-
     <style>
         /* ===== RESET ===== */
         * {
@@ -98,8 +95,10 @@
 
         /* Dropdown */
         select {
-            width: 750px;      /* Width */
-            height: 70px;     /* Height */
+            width: 750px;
+            /* Width */
+            height: 70px;
+            /* Height */
 
             padding: 14px;
             border: none;
@@ -112,10 +111,50 @@
             color: #000000;
             cursor: pointer;
 
-            text-align: center;      
+            text-align: center;
             text-align-last: center;
         }
 
+        /* Gender Buttons */
+        .gender {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .gender button {
+            width: 90px;
+            height: 35px;
+
+            border: none;
+            border-radius: 5px;
+
+            background: rgba(255, 255, 255, 0.6);
+            color: #333;
+
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .gender button.active {
+            background: #158cfc85;
+            color: white;
+        }
+
+        /* Search Button */
+        .search-btn {
+            width: 321px;
+            height: 40px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: white;
+
+            font-size: 15px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -137,30 +176,96 @@
             <select id="location">
                 <option value="">Pick the Location for the Stay....</option>
                 <option value="potheri">Potheri</option>
-                <option value="thailavaram">Thilavaram</option>
-                <option value="Guduvancheri">Guduvancheri</option>
-                <option value="MM NAGAR">MM NAGAR</option>
+                <option value="thailavaram">Thailavaram</option>
+                <option value="gudavencheri">Guduvancheri</option>
+                <option value="MM Nagar">MM Nagar</option>
+
             </select>
+        </div>
+
+        <!-- Gender & Search Section -->
+        <div id="detailsSection" style="display:none;">
+
+            <!-- Gender -->
+            <div class="gender">
+
+                <button id="boysBtn" onclick="selectGender('boys')">
+                    Boys
+                </button>
+
+                <button id="girlsBtn" onclick="selectGender('girls')">
+                    Girls
+                </button>
+
+            </div>
+
+            <!-- Search -->
+            <button class="search-btn" onclick="searchPG()">
+                Search
+            </button>
+
         </div>
 
     </div>
 
     <script>
 
-        /* ===== DROPDOWN ACTION ===== */
-        document.getElementById("location").addEventListener("change", function () {
+        let selectedGender = "";
 
-            let location = this.value;
+        const locationSelect = document.getElementById("location");
+        const details = document.getElementById("detailsSection");
 
-            if(location === "potheri"){
-            window.location.href = "potheri.html";
-    
-            }
-            if(location === "thailavaram"){
-            window.location.href = "thailavaram.html";
+        locationSelect.addEventListener("change", function () {
+
+            if (this.value !== "") {
+                details.style.display = "block"; // Show section
+            } else {
+                details.style.display = "none";  // Hide again
             }
 
         });
+
+
+        function selectGender(gender) {
+
+            const boys = document.getElementById("boysBtn");
+            const girls = document.getElementById("girlsBtn");
+
+            boys.classList.remove("active");
+            girls.classList.remove("active");
+
+            if (gender === "boys") {
+                boys.classList.add("active");
+            } else {
+                girls.classList.add("active");
+            }
+
+            selectedGender = gender;
+        }
+
+
+        function searchPG() {
+
+            const location = locationSelect.value;
+
+            if (location === "") {
+                alert("Select a location first");
+                return;
+            }
+
+            if (selectedGender === "") {
+                alert("Select Boys or Girls");
+                return;
+            }
+
+            alert(
+                "Searching PGs in " + location +
+                " for " + selectedGender
+            );
+
+            // Later: load PG results here
+        }
+
 
     </script>
 
