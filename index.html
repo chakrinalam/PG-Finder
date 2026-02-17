@@ -12,6 +12,10 @@
     <!-- Google Font (same modern style) -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+
+    <!-- <option value="thailavaram">Thailavaram</option>
+    <option value="potheri">Potheri</option> -->
+
     <style>
         /* ===== RESET ===== */
         * {
@@ -94,16 +98,24 @@
 
         /* Dropdown */
         select {
-            width: 100%;
+            width: 750px;      /* Width */
+            height: 70px;     /* Height */
+
             padding: 14px;
             border: none;
             border-radius: 8px;
+
             font-size: 16px;
             outline: none;
-            background: white;
-            color: #333;
+
+            background: rgba(255, 255, 255, 0.623);
+            color: #000000;
             cursor: pointer;
+
+            text-align: center;      
+            text-align-last: center;
         }
+
     </style>
 </head>
 
@@ -125,7 +137,9 @@
             <select id="location">
                 <option value="">Pick the Location for the Stay....</option>
                 <option value="potheri">Potheri</option>
-                <option value="thilavaram">Thilavaram</option>
+                <option value="thailavaram">Thilavaram</option>
+                <option value="Guduvancheri">Guduvancheri</option>
+                <option value="MM NAGAR">MM NAGAR</option>
             </select>
         </div>
 
@@ -138,15 +152,12 @@
 
             let location = this.value;
 
-            if (location === "potheri") {
-                alert("Showing PGs in Potheri");
-                // later you can redirect:
-                // window.location.href="potheri.html";
+            if(location === "potheri"){
+            window.location.href = "potheri.html";
+    
             }
-
-            if (location === "thilavaram") {
-                alert("Showing PGs in Thilavaram");
-                // window.location.href="thilavaram.html";
+            if(location === "thailavaram"){
+            window.location.href = "thailavaram.html";
             }
 
         });
